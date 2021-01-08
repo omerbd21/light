@@ -1,12 +1,13 @@
-from fastapi import APIRouter,Response, status
+from fastapi import APIRouter, Response, status
 from classes import Node
 import paramiko
 from settings import PRIVATE_KEY
+
 router = APIRouter()
 
 
-@router.post("/install/", tags=["install"])
-async def install_ansible(node: Node,response: Response):
+@router.post("/install", tags=["install"])
+async def install_ansible(node: Node, response: Response):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
